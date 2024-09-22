@@ -10,5 +10,6 @@ export default defineConfig({
     tailwind(),
   ],
   site: 'https://codesardine.github.io',
-  base: 'portfolio',
+  base: '/portfolio/',
+  outDir: './dist',
 });
