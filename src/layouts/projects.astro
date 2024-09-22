@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Page from './base.astro';
+type Props = CollectionEntry<'projects'>['data'];
+const { title, description } = Astro.props;
+---
+
+<Page title={title} description={description}>
+    <div class="font-bold max-w-screen-md mx-auto pb-10">
+        <slot />            
+    </div>
+</div>
+</Page>
+
+<style is:global>
+    
+</style>
+		

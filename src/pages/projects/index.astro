@@ -1,0 +1,98 @@
+---
+import Page from '../../layouts/base.astro';
+import { getCollection } from 'astro:content';
+const projects = "projects"
+const projectEntries = await getCollection(projects);
+const isDevelopment = import.meta.env.MODE === 'development';
+
+const linkExists = (url) => !!url && url.length > 0;
+const publishedProjects = projectEntries.filter(post => {
+  if (isDevelopment) {
+    return true; // Show all posts, including drafts
+  }
+  return post.data.draft !== true; // Only show non-draft posts in production
+});
+
+const sortEntries = publishedProjects.sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+//console.log(sortEntries)
+
+const page = {
+	"title": projects,
+	"desc": "A collection of diverse projects I’ve completed",
+}
+
+function getImagePath(img) {
+	return `/projects/${img}`
+}
+---
+<style is:global>
+.p-shadow {
+	box-shadow: 10px 10px 0 #fde047;
+}
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner { 
+  transform-style: preserve-3d;
+  justify-content: center;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+}
+
+.flip-card-back { 
+  transform: rotateY(180deg);
+}
+</style>
+
+<Page title={ page.title } description={ page.desc }>
+	<div class="font-bold max-w-screen-md mx-auto">
+	<div class="px-4">
+		<h1 class="text-5xl font-bold capitalize text-gray-900 pt-24">{ page.title }</h1>
+	    <h2 class="text-3xl text-gray-800 mb-14">{ page.desc }</h2>
+	</div>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+{
+	sortEntries.map((project) => (	
+	<div class="flip-card h-80 rounded-xl text-center w-full hover:z-10">
+		<div class="flip-card-inner relative w-full h-full duration-500 transition-transform">
+			<div class="flip-card-front absolute h-full w-full">
+				<figure>
+					<img  class="w-full max-h-80 object-cover h-[100vh]"
+					src={getImagePath(project.data.imgs[0])} 
+					alt={ page.title } />
+				</figure>
+			</div>
+			<div class="absolute h-full w-full px-4 py-2 rotate-y-180 bg-white flip-card-back hover:z-10 grid grid-row-4 content-center">
+				<h3 class="text-pink-500">{ project.data.tags }</h3>
+				<h4 class="text-xl capitalize">{ project.data.title }</h4> 
+				<p class="text-gray-600 mt-2 max-w-80 mx-auto">{ project.data.description }</p>
+				<div class="uppercase card-actions gap-8 mt-4 flex justify-center">
+					<a class={linkExists(project.data.url) ? 'py-2 px-4 block border-2 border-[#cbc06f] hover:bg-[#cbc06f] transition-colors duration-500 rounded' : 'hidden'} href={ project.data.url } target="_blank">
+					<i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+					try live</a>
+					<a class={linkExists(project.data.code) ? 'py-2 px-4 block border-2 border-[#cbc06f] hover:bg-[#cbc06f] transition-colors duration-500 rounded' : 'hidden'} href={ project.data.code } target="_blank">
+					<i class="fa-solid fa-code mr-2"></i>
+					code</a>
+				</div>
+			</div>
+		</div>
+</div>	
+	))
+}
+</div>
+</div>
+</Page>

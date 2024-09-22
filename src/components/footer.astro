@@ -1,0 +1,8 @@
+---
+const today = new Date();
+import { text } from '../constants.ts';
+---
+
+<footer class="text-gray-100 z-20 lg:fixed lg:max-w-fit bg-gray-900 px-4 py-2 bottom-1 text-center lg:mx-auto lg:left-0 lg:right-0">
+	&copy; {today.getFullYear()} <span class="capitalize">{ text.author}</span>. All rights reserved.
+</footer>

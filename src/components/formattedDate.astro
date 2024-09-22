@@ -1,0 +1,23 @@
+---
+interface Props {
+	date: Date;
+}
+
+const { date } = Astro.props;
+const Array = date.toLocaleDateString('en-uk', {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		}).split(" ")
+
+const newDate = {
+	"day": Array[0],
+	"month": Array[1],
+	"year": Array[2]
+}
+---
+
+<div class="flex flex-col gap-1 text-center justify-center px-4 py-2">
+	<span class="font-bold text-4xl text-gray-100">{ newDate.day }</span>
+	<span class="text-sm text-gray-300">{ newDate.month } { newDate.year }</span>
+</div>

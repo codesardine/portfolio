@@ -1,0 +1,52 @@
+---
+import Footer from '../components/footer.astro';
+import Navigation from "../components/navigation.vue"
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title } = Astro.props;
+const { description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={ description } />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap&display=swap&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />		<meta name="generator" content={ Astro.generator } />
+		<title>{ title }</title>
+	</head>
+	<body class="min-h-screen text-gray-900 text-lato bg-[#cbc06f]">
+		<Navigation client:only="vue"></Navigation>
+		<main class="z-10 relative min-h-[calc(100vh-50px)] pb-16">
+			<slot />
+		</main>
+		<Footer />
+		</div>
+	</body>
+</html>
+
+<style is:global>
+.text-vibes-regular {
+	font-family: "Great Vibes", cursive;
+	font-weight: 400;
+	font-style: normal;
+} 
+.g-shadow{
+box-shadow: 10px 10px 0 #cbc06f;
+}
+.b-shadow{
+	box-shadow: -14px -14px 0 #111827;
+}
+.text-lato {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+}
+</style>

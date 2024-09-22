@@ -1,0 +1,47 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Prose from '../components/prose.astro';
+import { getEntry } from 'astro:content';
+import Page from '../layouts/base.astro';
+import FormattedDate from '../components/formattedDate.astro';
+const slug = Astro.params.slug;
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, updatedDate } = Astro.props;
+const entry = await getEntry('blog', slug);
+const { Content } = await entry.render();
+---
+
+<Page title={title} description={description}>
+    <div class="font-bold max-w-screen-md mx-auto">
+        <div class="flex pb-20 pt-20">
+            <div class="bg-gray-800 w-28 mr-6 y-shadow flex justify-center rounded-tl-2xl">
+                <FormattedDate date={pubDate} />
+                {
+                    updatedDate && (
+                        <div class="last-updated-on">
+                            Last updated on <FormattedDate date={updatedDate} />
+                        </div>
+                    )
+                }
+            </div>
+            <div>
+                <h1 class="text-5xl font-bold pb-4 text-gray-900">{ title }</h1>
+                <h2 class="text-2xl text-gray-800">{ description }</h2>
+            </div>
+        </div> 
+        <Prose>
+            <Content />
+        </Prose>
+    </div>
+</div>
+</Page>
+
+<style is:global>
+    .y-shadow {
+        box-shadow: 10px 10px 0 #fde047;
+    }
+    .prose {
+        width: 100%;
+    }
+</style>
+		
