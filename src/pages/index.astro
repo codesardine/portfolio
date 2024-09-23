@@ -1,6 +1,8 @@
 ---
 import Page from '../layouts/base.astro';
 import { text } from '../constants.ts';
+const title = text.author + " " + text.stack + " " + text.field
+const desc = text.stack + " " + text.field + ", " + text.build
 ---
 
 <script is:inline>
@@ -11,7 +13,7 @@ import { text } from '../constants.ts';
   }
 </script>
 
-<Page title=`${text.author}` description={text.stack + " " + text.field + ", " + text.build }>
+<Page title={ title } description={ desc }>
   <div class="lg:flex min-h-screen w-full">
     <div class="relative grid lg:grid-rows-2 lg:w-3/5 xl:w-2/5 lg:pt-0 lg:pb-0">
         <div class="grid justify-items-end h-full">
