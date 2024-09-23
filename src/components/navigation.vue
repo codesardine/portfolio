@@ -36,13 +36,13 @@ export default {
 .btn-shadow {
   filter: drop-shadow(0 0 2px gray);
 }
-a {
+#nav ul a {
 	display: block;
 	position: relative;
 	padding: 0.2em 0;
 }
 
-a::after {
+#nav ul a::after {
 	content: '';
 	position: absolute;
 	bottom: -3px;
@@ -54,17 +54,17 @@ a::after {
 	transition: opacity 300ms, transform 300ms;
 }
 
-li a {
+#nav ul li a {
 	overflow: hidden;
 }
 
-li a::after {
+#nav ul li a::after {
 	opacity: 1;
 	transform: translate3d(-100%, 0, 0);
 }
 
-li a:hover::after,
-li a:focus::after{
+#nav ul li a:hover::after,
+#nav ul li a:focus::after{
 	transform: translate3d(0, 0, 0);
 }
 </style>
