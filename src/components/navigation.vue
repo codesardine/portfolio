@@ -116,7 +116,7 @@ export default {
       </div>
       <div class="navbar-end">
         <a class="w-fit text-3xl block relative" href="/">
-              <span class="logo block btn-shadow bg-gray-900 py-3 px-4 rounded-b-xl transition duration-300">
+              <span class="logo block btn-shadow bg-gray-900 p-4 rounded-b-xl transition duration-300">
                 <img class="w-16" src="/favicon.svg">
               </span>
             </a>
