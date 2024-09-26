@@ -27,7 +27,7 @@ const isHomePage = Astro.url.pathname === "/";
 	</head>
 	<body class="min-h-screen text-gray-900 text-lato bg-[#cbc06f]">
 		<Navigation client:only="vue"></Navigation>
-		<main class="z-10 relative min-h-[calc(100vh-50px)] pb-16">
+		<main class="z-10 relative lg:min-h-100vh">
 			<slot />
 		</main>
 		<Footer />
