@@ -42,30 +42,44 @@ export default {
 	padding: 0.2em 0;
 }
 
-#nav ul a::after {
+#nav ul a::after, #nav .logo::after {
 	content: '';
 	position: absolute;
 	bottom: -3px;
 	left: 0;
 	width: 100%;
 	height: 8px;
-	background-color: #ec4899;
+	background-color: #e91e63;
 	opacity: 0;
 	transition: opacity 300ms, transform 300ms;
 }
 
-#nav ul li a {
+#nav ul li a, #nav .logo {
 	overflow: hidden;
 }
 
-#nav ul li a::after {
+#nav ul li a::after, #nav .logo::after {
 	opacity: 1;
 	transform: translate3d(-100%, 0, 0);
 }
 
 #nav ul li a:hover::after,
-#nav ul li a:focus::after{
+#nav ul li a:focus::after, #nav .logo:focus::after, #nav .logo:hover::after {
 	transform: translate3d(0, 0, 0);
+}
+
+.dashed-animation:hover::before  {
+    position: absolute;
+    content: '';
+    height: calc(100% + 18px); 
+    width: calc(100% + 18px); 
+    border: 4px dashed #e91e63;
+    border-radius: inherit;
+    animation: spin 10s linear infinite;
+  }  @keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg); 
+    }
 }
 </style>
 
@@ -75,7 +89,7 @@ export default {
       <div class="navbar-start text-gray-100">
         <div class="will-change-transform transform-gpu -rotate-180 dropdown duration-500 transition-transform">
           <div tabindex="0" role="button" aria-label="Toggle menu"
-               class="hover:text-pink-500 btn btn-ghost btn-circle bg-gray-900 hover:bg-gray-900 rounded-br-none btn-shadow"
+               class="dashed-animation hover:text-[#e91e63] btn btn-ghost btn-circle bg-gray-900 hover:bg-gray-900 btn-shadow"
                @click="toggleMenu" @touchstart="toggleMenu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +105,9 @@ export default {
             </svg>
           </div>
           <ul tabindex="0" aria-label="Navigation"
-               class="shadow-xl border-l-4 border-pink-500 min-w-80 absolute capitalize text-gray-200 bg-gray-900 rounded-lg z-[1] mt-3 py-4 px-6">         
+               class="shadow-xl border-l-4 border-[#e91e63] min-w-80 absolute capitalize text-gray-200 bg-gray-900 rounded-lg z-[1] mt-3 py-4 px-6">         
             <component v-for="entry in menu">
-              <li><a class="w-fit relative block text-3xl hover:text-pink-500 py-2 transition duration-300" v-bind:href="'/' + entry.name">{{ entry.name }}</a></li>
+              <li><a class="w-fit relative block text-3xl hover:text-[#e91e63] py-2 transition duration-300" v-bind:href="'/' + entry.name">{{ entry.name }}</a></li>
             </component>       
           </ul>
         </div>
@@ -101,8 +115,10 @@ export default {
       <div class="navbar-center">
       </div>
       <div class="navbar-end">
-        <a class="w-fit text-3xl block relative pt-3" href="/">
-              <span class="btn-shadow text-[#cbc06f] bg-gray-900 pt-6 pl-2 pr-4 pb-2 rounded-b-xl transition duration-300 hover:text-pink-500 text-vibes-regular font-bold">VL</span>
+        <a class="w-fit text-3xl block relative" href="/">
+              <span class="logo block btn-shadow text-[#cbc06f] bg-gray-900 py-3 px-4 rounded-b-xl transition duration-300 hover:text-pink-500 text-vibes-regular font-bold">
+                <img class="w-16" src="/favicon.svg">
+              </span>
             </a>
       </div>
     </div>

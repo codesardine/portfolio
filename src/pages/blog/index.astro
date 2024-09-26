@@ -38,8 +38,8 @@ const blog = {
 			<div class="rounded-tl-2xl justify-center content-center flex p-shadow bg-gray-800">
 				<FormattedDate date={ post.data.pubDate } />
 			</div>
-			<div class="bg-[#dcd59f] w-full px-2 py-4 p-shadow">
-				<a href={`/blog/${post.slug}/`} class="hover:underline w-fit flex justify-center flex-col text-gray-800">
+			<div class="bg-[#dcd59f] w-full px-2 py-4 p-shadow grayscale hover:grayscale-0 transition-all duration-300">
+				<a href={`/blog/${post.slug}/`} class="w-fit flex justify-center flex-col text-gray-800">
 					<h2 class="capitalize text-3xl">
 						{ post.data.title }
 					</h2>
