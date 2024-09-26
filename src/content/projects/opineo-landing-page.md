@@ -1,7 +1,7 @@
 ---
 title: 'Oranje Pi Neo'
 description: 'Product launch page showcasing the Orange Pi Neo handheld, with detailed features, specifications, and key highlights.'
-pubDate: 2023-02-03
+pubDate: 2024-02-03
 tags: "HTML TailwindCSS"
 draft: false
 url: "https://neo.manjaro.org"
